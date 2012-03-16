@@ -52,4 +52,4 @@ app.get('/:yindow', serve);
 app.get('/:yindow/:pane/', setPane);
 
 app.listen(4031);
-console.log('Express server listening on port http://localhost:%d in %s mode', app.address().port, app.settings.env);
+console.log('Yonder started - http://localhost:%d', app.address().port);
