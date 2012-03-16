@@ -28,6 +28,13 @@ function serve(req, res) {
   });
 }
 
+function info(req, res) {
+  var yindow;
+  yindow = yonder.find(req.params.yindow) || yonder.createYindow();
+
+  res.json(yindow);
+}
+
 function setPane(req, res) {
   var yindow = yonder.find(req.params.yindow);
   yindow.panes[req.params.pane].set(url.parse(req.url, true).query.url);
@@ -49,6 +56,7 @@ io.sockets.on('connection', function (socket) {
 
 app.get('/', createNew);
 app.get('/:yindow', serve);
+app.get('/:yindow/info', info);
 app.get('/:yindow/:pane/', setPane);
 
 app.listen(4031);
