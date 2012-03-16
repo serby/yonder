@@ -1,6 +1,6 @@
-#
+# Yonder - A remote browser management tool
 
-[![build status](https://secure.travis-ci.org/serby/###.png)](http://travis-ci.org/serby/###)
+[![build status](https://secure.travis-ci.org/serby/yonder.png)](http://travis-ci.org/serby/yonder)
 
 ## Installation
 
@@ -14,7 +14,7 @@ Then goto
 
      http://localhost:4031/{WINDOWID}
 
-If you don't provide an WINDOWID you'll be redirected to a url with a unique WINDOWID.
+If you don't provide an ''WINDOWID'' you'll be redirected to a url with a unique ''WINDOWID''.
 
       http://localhost:4031/yonder1
 
@@ -24,12 +24,12 @@ By default a page will have just one ''pane'' which will have the index 0.
 
       GET http://localhost:4031/{WINDOWID}/info
 
-      GET http://localhost:4031/yonder1/info
+      GET http://localhost:4031/y1/info
 
 Would return
 
       {
-        name: 'yonder1',
+        name: 'y1',
         panes: [
           {
             id: 0,
