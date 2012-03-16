@@ -1,0 +1,26 @@
+!!! 5
+html(lang='en', itemscope, itemtype='http://schema.org/Organization')
+  head
+    block head
+      meta(charset='utf-8')
+
+      //- SITE INFORMATION
+      title Yonder
+
+    block styles
+      //- CSS
+      link(rel='stylesheet', type='text/css', href='/css/index.css', media='all')
+
+  body
+    p Loading...
+
+    block script
+      script(src='//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+      script
+        if (typeof jQuery === 'undefined') {
+          document.write('<script src="/js/jquery-1.7.1.min.js" />');
+        }
+      script(src='/socket.io/socket.io.js')
+      script(src='/js/yonder-client.js')
+      script
+        yonder({ name: document.location.pathname.substring(1) });

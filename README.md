@@ -4,27 +4,32 @@
 
 ## Installation
 
-      npm install ###
+      npm install yonder
 
 ## Usage
 
-Goto
-     http://localhost:4031/{PAGEID}
+      yonder start
 
-If you don't provide an PAGEID you'll be redirected to a url with a random PAGEID
+Then goto
 
-By default the a page will have just one pane. So if you open a new page called ''remmy1'' you will have will have a single pane which will have the index 0.
+     http://localhost:4031/{WINDOWID}
 
-### Get Page Information
+If you don't provide an WINDOWID you'll be redirected to a url with a unique WINDOWID.
 
-      GET http://localhost:4031/{PAGEID}/info
+      http://localhost:4031/yonder1
 
-      GET http://localhost:4031/remmy1/info
+By default a page will have just one ''pane'' which will have the index 0.
+
+### Get Window Information
+
+      GET http://localhost:4031/{WINDOWID}/info
+
+      GET http://localhost:4031/yonder1/info
 
 Would return
 
       {
-        name: 'remmy1',
+        name: 'yonder1',
         panes: [
           {
             id: 0,
@@ -33,8 +38,7 @@ Would return
         }
       }
 
-For a page that has been split like so:
-
+For a window that has been split like so:
 
       +----------------+
       |       |        |
@@ -74,28 +78,47 @@ The response would be:
         ]
       }
 
-### Horizontal Split
+### Setting Pane content
+      PUT http://localhost:4031/{WINDOWID}/{PANE}
 
-      POST http://localhost:4031/{PAGEID}/{PANE}/hspliter
-
-      POST http://localhost:4031/remmy1/0/hspliter
-
-#### POST DATA
+#### PUT DATA
       {
         url: 'http://www.clock.co.uk',
         refresh: 60 // How often to refresh - Default to 0 ie never!
       }
 
 #### RESPONSE DATA
-      { success: true }
+      HTTP STATUS 200
+
+There is also a browser shortcut for setting the Pane content via the browser
+      GET http://localhost:4031/{WINDOWID}/{PANE}/{URL}
+
+      GET http://localhost:4031/y1/0/http://www.clock.co.uk
+
+### Horizontal Split
+
+You can split a pain like so:
+
+      POST http://localhost:4031/{WINDOWID}/{PANE}/hspliter
+
+      POST http://localhost:4031/yonder1/0/hspliter
+
+#### POST DATA
+      {
+        url: 'http://www.clock.co.uk',
+        refresh: 60
+      }
+
+#### RESPONSE DATA
+      HTTP STATUS 201
 
 ### Vertical Split
 
-      POST http://localhost:4031/remmy1/0/vspliter
+      POST http://localhost:4031/yonder1/0/vspliter
 
 ### Vertical Split and make new panel {URL}
 
-      POST http://localhost:4031/remmy1/0/vspliter/
+      POST http://localhost:4031/yonder1/0/vspliter/
 
 #### POST DATA
       {
@@ -103,7 +126,7 @@ The response would be:
       }
 
 #### RESPONSE DATA
-      { success: true }
+      HTTP STATUS 201
 
 
 ## Credits

@@ -1,15 +1,15 @@
 {
 	"author": "Paul Serby <paul@serby.net>",
-	"name": ".....",
-	"description": "",
+	"name": "Yonder",
+	"description": "A remote browser management service",
 	"version": "0.0.1",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:serby/...."
+		"url": "git@github.com:serby/yonder"
 	},
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
-		"test": "mocha -r should -R List "
+		"test": "mocha -r should"
 	},
 	"engines": {
 		"node": ">0.4.0"
@@ -18,5 +18,6 @@
 		"mocha": "*",
 		"should.js": "*"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+	}
 }
