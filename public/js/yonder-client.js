@@ -11,7 +11,6 @@
     function setup(data) {
       yindow = data;
       yindow.panes.forEach(function(pane, index) {
-        var src = pane.src || '';
         $el.html('<iframe id="pane-' + index + '"></iframe>');
         setPane(pane);
       });
@@ -28,8 +27,9 @@
     }
 
     function setPane(data) {
+      console.log('Setting panel ' + data.index  + ' to ' + data.url);
       var setThisPane = function() {
-        console.log(data, $('#pane-' + data.index));
+        console.log('data', data, $('#pane-' + data.index));
         $('#pane-' + data.index).attr('src', data.url);
       };
 

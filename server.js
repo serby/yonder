@@ -20,8 +20,12 @@ function createNew(req, res) {
 }
 
 function serve(req, res) {
-  var yindow;
-  yindow = yonder.find(req.params.yindow) || yonder.createYindow();
+  var yindow = yonder.find(req.params.yindow);
+
+  if (!yindow) {
+     yindow = yonder.createYindow(url.parse(req.url).pathname.substring(1));
+     return res.redirect('/' + yindow.name);
+  }
 
   res.render('index', {
     layout: false
@@ -52,6 +56,10 @@ io.sockets.on('connection', function (socket) {
     });
     socket.emit('setup', yindow);
   });
+});
+
+app.get('/yonder', function(req, res) {
+  res.send('Yonder');
 });
 
 app.get('/', createNew);
