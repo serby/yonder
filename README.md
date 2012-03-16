@@ -14,7 +14,7 @@ Then goto
 
      http://localhost:4031/{WINDOWID}
 
-If you don't provide an ''WINDOWID'' you'll be redirected to a url with a unique ''WINDOWID''.
+If you don't provide an **WINDOWID** you'll be redirected to a url with a unique **WINDOWID**.
 
       http://localhost:4031/yonder1
 
