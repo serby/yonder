@@ -93,11 +93,11 @@ The response would be:
 There is also a browser shortcut for setting the Pane content via the browser
       GET http://localhost:4031/{WINDOWID}/{PANE}/{URL}
 
-      GET http://localhost:4031/y1/0/http://www.clock.co.uk
+      GET http://localhost:4031/y1/0/?url=http://www.clock.co.uk
 
 ### Horizontal Split
 
-You can split a pain like so:
+You can split a pane like so:
 
       POST http://localhost:4031/{WINDOWID}/{PANE}/hspliter
 
