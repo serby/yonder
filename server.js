@@ -39,10 +39,29 @@ function info(req, res) {
   res.json(yindow);
 }
 
+function findPane(req) {
+
+  var yindow = yonder.find(req.params.yindow);
+  if (!yindow) {
+    throw new Error('Unknown yindow ' + req.params.yindow);
+  }
+  return yindow.panes[req.params.pane];
+}
+
+
 function setPane(req, res) {
   var yindow = yonder.find(req.params.yindow);
-  yindow.panes[req.params.pane].set(url.parse(req.url, true).query.url);
+  yindow.panes[req.params.pane].set(url.parse(req.url, true).query);
   res.end();
+}
+
+function setPaneFromPut(req, res) {
+  findPane(req).set(req.body);
+  res.end();
+}
+
+function hsplit(req, res) {
+  var pane = findPane(req);
 }
 
 io.sockets.on('connection', function (socket) {
@@ -66,6 +85,8 @@ app.get('/', createNew);
 app.get('/:yindow', serve);
 app.get('/:yindow/info', info);
 app.get('/:yindow/:pane/', setPane);
+app.put('/:yindow/:pane/', setPaneFromPut);
+app.put('/:yindow/:pane/hspliter', hsplit);
 
 app.listen(4031);
 console.log('Yonder started - http://localhost:%d', app.address().port);
