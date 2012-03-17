@@ -11,7 +11,7 @@
     function setup(data) {
       yindow = data;
       yindow.panes.forEach(function(pane, index) {
-        $el.html('<iframe id="pane-' + index + '"></iframe>');
+        $el.html('<div id="pane-' + index + '" class="pane"><div style="display: none"></div><iframe style="display: none"></iframe></div>');
         setPane(pane);
       });
       redraw();
@@ -30,7 +30,15 @@
       console.log('Setting panel ' + data.index  + ' to ' + data.url);
       var setThisPane = function() {
         console.log('data', data, $('#pane-' + data.index));
-        $('#pane-' + data.index).attr('src', data.url);
+        var $iframe =  $('#pane-' + data.index + ' iframe')
+          , $div = $('#pane-' + data.index + ' div');
+        if (data.url) {
+          $div.hide();
+          $iframe.attr('src', data.url).show();
+        } else if (data.html) {
+          $iframe.hide();
+          $div.html(data.html).show();
+        }
       };
 
       if ((data.refresh) && (data.refresh !== 0)) {
