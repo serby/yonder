@@ -56,13 +56,13 @@ The response would be:
         name: '',
         panes: [
           {
-            vertical: [
+            v: [
               {
                 id: 0,
                 url: ''
               },
               {
-                horizontal: [
+                h: [
                   {
                     id: 1,
                     url: ''
