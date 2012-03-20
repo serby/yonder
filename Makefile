@@ -1,7 +1,7 @@
 test:
 	@./node_modules/.bin/mocha \
 		-r should \
-		-R spec
+		-R Spec
 
 lint-changed:
 	@jshint `git status --porcelain | sed -e "s/^...//g"`
