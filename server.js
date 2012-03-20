@@ -61,7 +61,15 @@ function setPaneFromPut(req, res) {
 }
 
 function hsplit(req, res) {
-  var pane = findPane(req);
+  var yindow = yonder.find(req.params.yindow);
+  yindow.hsplit(req.params.pane, req.body);
+  res.end();
+}
+
+function vsplit(req, res) {
+  var yindow = yonder.find(req.params.yindow);
+  yindow.vsplit(req.params.pane, req.body);
+  res.end();
 }
 
 io.sockets.on('connection', function (socket) {
@@ -86,7 +94,8 @@ app.get('/:yindow', serve);
 app.get('/:yindow/info', info);
 app.get('/:yindow/:pane/', setPane);
 app.put('/:yindow/:pane/', setPaneFromPut);
-app.put('/:yindow/:pane/hspliter', hsplit);
+app.post('/:yindow/:pane/hsplit', hsplit);
+app.post('/:yindow/:pane/vsplit', vsplit);
 
 app.listen(4031);
 console.log('Yonder started - http://localhost:%d', app.address().port);
