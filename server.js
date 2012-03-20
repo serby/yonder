@@ -81,6 +81,9 @@ io.sockets.on('connection', function (socket) {
         socket.emit('setPane', setData);
       });
     });
+    yindow.on('update', function(updateData) {
+      socket.emit('update', updateData);
+    });
     socket.emit('setup', yindow);
   });
 });
