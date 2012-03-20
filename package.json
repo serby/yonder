@@ -19,7 +19,7 @@
 	},
 	"dependencies": {
 		"mocha": "*",
-		"should.js": "*"
+		"should": "*"
 	},
 	"devDependencies": {
 	}
