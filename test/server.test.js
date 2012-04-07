@@ -1,13 +1,26 @@
 var request = require('request')
   , async = require('async');
 
+function nullFn() {}
+
+var nullLogger = {
+  info: nullFn,
+  warn: nullFn,
+  error: nullFn,
+  log: nullFn,
+  verbose: nullFn
+};
+
 describe('server', function() {
 
   describe('GET /', function() {
     it('should redirect to y1', function(done) {
-      require('../server');
-      var i = 0
+      var server = require('../expressServer').createServer({ logger: nullLogger })
+        , i = 0
         , paths = [];
+
+      server.start();
+
       async.until(function() {
         return i === 5;
       }, function(callback) {
