@@ -2,27 +2,29 @@ module.exports.createServer = function(options) {
 
   var url = require('url')
     ,express = require('express')
-    , yonder = require('./lib/yonder').createYonder()
-    , app = module.exports = express.createServer()
+    , app = express.createServer()
     , logger = options.logger || {
       info: console.info,
-      log: console.log
+      log: console.log,
+      debug: function() {
+        console.info(arguments);
+      }
     }
+    , yonder = options.yonder
     , io = require('socket.io').listen(app, { logger: logger });
 
   require('./lib/socketIoAdaptor').createAdaptor(io, yonder);
   require('./lib/manageSocketIoAdaptor').createAdaptor(io, yonder);
 
-  // module.exports.app = app;
-
   app.configure(function(){
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'jade');
-    app.use(require('stylus').middleware({ src: __dirname + '/public' }));
-    app.use(express.bodyParser());
-    app.use(express.methodOverride());
-    app.use(app.router);
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.favicon(__dirname + '/public/images/favicon.png'))
+      .set('views', __dirname + '/views')
+      .set('view engine', 'jade')
+      .use(require('stylus').middleware({ src: __dirname + '/public' }))
+      .use(express.bodyParser())
+      .use(express.methodOverride())
+      .use(app.router)
+      .use(express.static(__dirname + '/public'));
   });
 
   function createNew(req, res) {
