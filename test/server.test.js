@@ -8,16 +8,24 @@ var nullLogger = {
   warn: nullFn,
   error: nullFn,
   log: nullFn,
-  verbose: nullFn
+  verbose: nullFn,
+  debug: nullFn
 };
+
+function getServer() {
+  return require('../expressServer').createServer({
+    logger: nullLogger,
+    yonder:  require('../lib/yonder').createYonder()
+  });
+}
 
 describe('server', function() {
 
   describe('GET /', function() {
     it('should redirect to y1', function(done) {
-      var server = require('../expressServer').createServer({ logger: nullLogger })
-        , i = 0
-        , paths = [];
+      var i = 0
+        , paths = []
+        , server = getServer();
 
       server.start();
 
