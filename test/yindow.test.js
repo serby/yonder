@@ -1,28 +1,6 @@
-var _ = require('lodash')
+var stripEventEmitterProps = require('./strip-ee-props')
 
 describe('yindow', function() {
-  var eeProps = ['domain', '_events', '_maxListeners']
-
-  function stripFunctions(obj) {
-    return _.omit(obj, _.methods(obj))
-  }
-
-  function stripEventEmitterProps(obj) {
-    if (Array.isArray(obj)) {
-      return obj.map(stripEventEmitterProps)
-    }
-
-    obj = _.omit(obj, eeProps)
-    if (obj.container && obj.container.items !== undefined) {
-      obj.container.items = stripEventEmitterProps(obj.container.items)
-    }
-
-    if (obj.items !== undefined) {
-      obj.items = stripEventEmitterProps(obj.items)
-    }
-
-    return stripFunctions(obj)
-  }
 
   it('should be created with a single horizontal container with a single pane', function() {
     var yindow = require('../lib/yindow').createYindow({ name: 'y1' });
