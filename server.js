@@ -1,14 +1,15 @@
 var url = require('url')
-  ,express = require('express')
+  , express = require('express')
   , yonder = require('./lib/yonder').createYonder()
-  , app = module.exports = express.createServer()
-  , io = require('socket.io').listen(app);
+  , app = module.exports = express()
+  , server = app.listen(4031)
+  , io = require('socket.io').listen(server);
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(require('stylus').middleware({ src: __dirname + '/public' }));
-  app.use(express.bodyParser());
+  app.use(express.json());
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
@@ -23,8 +24,8 @@ function serve(req, res) {
   var yindow = yonder.find(req.params.yindow);
 
   if (!yindow) {
-     yindow = yonder.createYindow(url.parse(req.url).pathname.substring(1));
-     return res.redirect('/' + yindow.name);
+    yindow = yonder.createYindow(url.parse(req.url).pathname.substring(1));
+    return res.redirect('/' + yindow.name);
   }
 
   res.render('index', {
@@ -100,5 +101,4 @@ app.put('/:yindow/:pane/', setPaneFromPut);
 app.post('/:yindow/:pane/hsplit', hsplit);
 app.post('/:yindow/:pane/vsplit', vsplit);
 
-app.listen(4031);
-console.log('Yonder started - http://localhost:%d', app.address().port);
+console.log('Yonder started - http://localhost:%d', server.address().port);
