@@ -53,4 +53,34 @@ describe('yonder', function () {
     stripEventEmitterProps(yonder.find('y4')).should.eql(yonderConfig[1])
   })
 
+  describe('#toArray', function () {
+    it('should return an array of yindows', function () {
+      var yonderConfig =
+        [ { container:
+            { orientation: 'h'
+            , items:
+              [ { url: '/yonder'
+                , index: 0
+                }
+              ]
+            }
+          , name: 'y3'
+          }
+        , { container:
+            { orientation: 'h'
+            , items:
+              [ { url: '/new-url'
+                , index: 1
+                }
+              ]
+            }
+          , name: 'y4'
+          }
+        ]
+        , yonder = require('../lib/yonder').createYonder(yonderConfig)
+
+      yonder.toArray().length.should.equal(2)
+    })
+  })
+
 })
