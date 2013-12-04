@@ -99,9 +99,9 @@ There is also a browser shortcut for setting the Pane content via the browser
 
 You can split a pane like so:
 
-      POST http://localhost:4031/{WINDOWID}/{PANE}/hspliter
+      POST http://localhost:4031/{WINDOWID}/{PANE}/hsplit/
 
-      POST http://localhost:4031/yonder1/0/hspliter
+      POST http://localhost:4031/yonder1/0/hsplit/
 
 #### POST DATA
       {
@@ -114,11 +114,11 @@ You can split a pane like so:
 
 ### Vertical Split
 
-      POST http://localhost:4031/yonder1/0/vspliter
+      POST http://localhost:4031/yonder1/0/vsplit/
 
 ### Vertical Split and make new panel {URL}
 
-      POST http://localhost:4031/yonder1/0/vspliter/
+      POST http://localhost:4031/yonder1/0/vsplit/
 
 #### POST DATA
       {
