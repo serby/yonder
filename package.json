@@ -12,7 +12,11 @@
   },
   "main": "server.js",
   "scripts": {
-    "test": "mocha -r should"
+    "lint": "./node_modules/.bin/jshint bin lib public/js test --reporter=./node_modules/jshint-full-path/index.js",
+    "pretest": "npm run-script lint",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec -r should",
+    "posttest": "./node_modules/.bin/istanbul check-coverage && rm -rf coverage",
+    "prepublish": "npm test && npm prune"
   },
   "engines": {
     "node": ">0.4.0"
@@ -27,6 +31,8 @@
     "jade": "~0.35.0"
   },
   "devDependencies": {
-    "jshint": "~2.3.0"
+    "jshint": "~2.3.0",
+    "jshint-full-path": "~1.0.0",
+    "istanbul": "~0.1.46"
   }
 }
