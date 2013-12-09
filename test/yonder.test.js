@@ -51,6 +51,17 @@ describe('yonder', function () {
 
     stripEventEmitterProps(yonder.find('y3')).should.eql(yonderConfig[0])
     stripEventEmitterProps(yonder.find('y4')).should.eql(yonderConfig[1])
+  it('should emit a `change` event whenever a yindow is added', function () {
+    var yond = yonder.createYonder()
+      , noOfTimes = 0
+
+    yond.on('change', function () {
+      noOfTimes += 1
+    });
+
+    yond.createYindow()
+    yond.createYindow()
+    noOfTimes.should.equal(2)
   })
 
   describe('#toArray', function () {
