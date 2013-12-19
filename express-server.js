@@ -5,17 +5,20 @@ var url = require('url')
   , socketIoAdaptor = require('./lib/socketIoAdaptor')
   , manageSocketIoAdaptor = require('./lib/manageSocketIoAdaptor')
   , _ = require('lodash')
+
 module.exports.createServer = function(opts) {
 
   var options = _.extend(
       { port: 4031
       }, opts)
     , yonder = options.yonder
-    , logger = options.logger ||
-      { info: console.info
-      , log: console.log
-      , debug: function() {
-          console.info(arguments)
+    , logger = options.logger
+    , logOptions =
+      { format: 'dev'
+      , stream:
+        { write: function (data) {
+            logger.info((data + '').trim())
+          }
         }
       }
 
@@ -25,6 +28,7 @@ module.exports.createServer = function(opts) {
       .set('view engine', 'jade')
       .use(require('stylus').middleware({ src: __dirname + '/public' }))
       .use(express.json())
+      .use(express.logger(logOptions))
       .use(express.methodOverride())
       .use(app.router)
       .use(express.static(__dirname + '/public'))
@@ -33,7 +37,7 @@ module.exports.createServer = function(opts) {
   function createNew(req, res) {
 
     var yindow = yonder.createYindow()
-    logger.log('Creating new yindow \'' + yindow.name + '\' for \'' + req.url + '\'')
+    logger.info('Creating new yindow \'' + yindow.name + '\' for \'' + req.url + '\'')
     res.redirect('/' + yindow.name)
   }
 
@@ -113,7 +117,7 @@ module.exports.createServer = function(opts) {
 
   app.start = function() {
     var server = app.listen(process.env.YONDER_PORT || options.port)
-      , ioServer = io.listen(server, { logger: logger })
+      , ioServer = io.listen(server)
 
     socketIoAdaptor.createAdaptor(ioServer, yonder)
     manageSocketIoAdaptor.createAdaptor(ioServer, yonder)
