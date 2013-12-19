@@ -60,13 +60,13 @@ describe('yonder', function () {
     stripEventEmitterProps(yond.find('y4')).should.eql(yonderConfig[1])
   })
 
-  it('should emit a `change` event whenever a yindow is added', function () {
+  it('should emit an `add` event whenever a yindow is added', function () {
     var yond = yonder.createYonder()
       , noOfTimes = 0
 
-    yond.on('change', function () {
+    yond.on('add', function () {
       noOfTimes += 1
-    });
+    })
 
     yond.createYindow()
     yond.createYindow()
