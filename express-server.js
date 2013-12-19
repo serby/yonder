@@ -99,7 +99,7 @@ module.exports.createServer = function(opts) {
   }
 
   app.get('/yonder', function(req, res) {
-    res.send('Yonder')
+    res.render('blank')
   })
 
   app.get('/', createNew)

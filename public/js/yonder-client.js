@@ -24,7 +24,10 @@
     function addPane(pane) {
       var $pane = $('#pane-' + pane.index)
       if ($pane.length === 0) {
-        $el.append('<div id="pane-' + pane.index + '" class="pane"><div style="display: none"></div><iframe style="display: none"></iframe></div>')
+        $el.append('<div id="pane-' + pane.index
+          + '" class="pane"><div style="display: none"></div><iframe data-pane-uri="'
+          + document.location.pathname + '/' + pane.index
+          + '" style="display: none"></iframe></div>')
         setPane(pane)
       }
     }

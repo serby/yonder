@@ -1,0 +1,29 @@
+p#pane-uri
+
+p Set URL:
+  input(id='url')
+button(id='hsplit') H Split
+button(id='vsplit') V Split
+
+script(src='/js/vendor/jquery-1.7.1.min.js')
+script.
+  var colors = 
+    [ '#FF7400', '#BF7130', '#A64B00', '#FF9640', '#FFB273', '#FFAA00', '#BF8F30', '#A66F00', '#FFBF40'
+    , '#FFD073', '#FF0000', '#BF3030', '#A60000', '#FF4040', '#FF7373', '#009999', '#1D7373', '#006363', 
+    , '#33CCCC', '#5CCCCC']
+
+  $(function() {
+    var uri = window.parent.$(window.frameElement).data('pane-uri')
+      , color = colors[Math.round(Math.random(colors.length) * (colors.length - 1))]
+
+    $('body').css('background', color)
+    $('#pane-uri').html('Pane URI: ' + uri)
+
+    $('#hsplit').on('click', function() {
+      $.post(uri + '/hsplit/', { data: { url: '/blank' }})
+    })
+
+    $('#vsplit').on('click', function() {
+      $.post(uri + '/vsplit/', { data: { url: '/blank' }})
+    })
+  })
