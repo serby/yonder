@@ -2,6 +2,7 @@ p#pane-uri
 
 p Set URL:
   input(id='url')
+  button(id='set') Set
 button(id='hsplit') H Split
 button(id='vsplit') V Split
 
@@ -25,5 +26,17 @@ script.
 
     $('#vsplit').on('click', function() {
       $.post(uri + '/vsplit/', { data: { url: '/blank' }})
+    })
+
+    function getUrl() {
+      var url = $('#url').val()
+      if (url.substring(0, 4) !== 'http') {
+        url = 'http://' + url
+      }
+      return url
+    }
+
+    $('#set').on('click', function() {
+      $.ajax(uri + '/', { type: 'put', contentType: 'application/json', data: JSON.stringify({ url: getUrl() })})
     })
   })
