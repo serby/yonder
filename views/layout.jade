@@ -14,11 +14,5 @@ html(lang='en', itemscope, itemtype='http://schema.org/Organization')
   body
     block body
 
-    block globalScript
-      script(src='/js/jquery-1.7.1.min.js')
-      script
-        if (typeof jQuery === 'undefined') {
-          document.write('<script src="/js/jquery-1.7.1.min.js" />');
-        }
-
     block script
+      script(src='/js/vendor/jquery-1.7.1.min.js')
