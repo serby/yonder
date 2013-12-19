@@ -4,7 +4,8 @@ block body
   #app
   script(id='yindow',type='application/x-tpl')
     li(id='yindow-$name') $name
-block script
+
+append script
   script(src='/socket.io/socket.io.js')
   script(src='/js/underscore.js')
   script(src='/js/manage.js')

@@ -4,9 +4,7 @@
     var log = function() { console.log(arguments); }
       , $el = $('body')
       , yindow
-      , pane = 0
-      , socket = io.connect(document.location.origin)
-      , rootContainer;
+      , socket = window.io.connect(document.location.origin)
 
     socket.emit('register', { name: options.name });
 

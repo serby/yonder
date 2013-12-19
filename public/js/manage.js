@@ -1,9 +1,9 @@
 $(function() {
-
-  var log = function() { console.log(arguments); }
+  var _ = window._
+    , log = function() { console.log(arguments); }
     , $el = $('#app')
     , $list = $('<ul id="yindow-list">')
-    , socket = io.connect(document.location.origin)
+    , socket = window.io.connect(document.location.origin)
     , yindowViews = {};
 
   function init() {
@@ -40,7 +40,7 @@ $(function() {
       , tpl = $('#yindow').text();
 
     function render(yindow) {
-      $el = $($('#yindow').text().replace(/\$name/g, yindow.name));
+      $el = $(tpl.replace(/\$name/g, yindow.name));
     }
 
     render(yindow);

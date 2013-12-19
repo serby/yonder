@@ -2,8 +2,8 @@ extend layout
 block body
   p Loading...
   
-block script
+append script
   script(src='/socket.io/socket.io.js')
   script(src='/js/yonder-client.js')
-  script
+  script.
     yonder({ name: document.location.pathname.substring(1) });

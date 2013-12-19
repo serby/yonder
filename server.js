@@ -1,4 +1,4 @@
 var yonder = require('./lib/yonder').createYonder()
-  , server = require('./expressServer').createServer({ yonder: yonder });
+  , server = require('./express-server').createServer({ yonder: yonder })
 
-server.start();
+server.start()
