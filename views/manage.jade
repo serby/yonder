@@ -2,6 +2,9 @@ extend layout
 block body
   h2 Manage Youder Yindows
   #app
+  script(id='yindow',type='application/x-tpl')
+    li(id='yindow-$name') $name
 block script
   script(src='/socket.io/socket.io.js')
+  script(src='/js/underscore.js')
   script(src='/js/manage.js')
