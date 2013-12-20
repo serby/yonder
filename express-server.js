@@ -36,7 +36,7 @@ module.exports.createServer = function(opts) {
 
   function createNew(req, res) {
 
-    var yindow = yonder.createYindow()
+    var yindow = yonder.createYindow({ logger: opts.logger })
     logger.info('Creating new yindow \'' + yindow.name + '\' for \'' + req.url + '\'')
     res.redirect('/' + yindow.name)
   }
@@ -45,7 +45,7 @@ module.exports.createServer = function(opts) {
     var yindow = yonder.find(req.params.yindow)
 
     if (!yindow) {
-      yindow = yonder.createYindow({ name: url.parse(req.url).pathname.substring(1) })
+      yindow = yonder.createYindow({ name: url.parse(req.url).pathname.substring(1), logger: opts.logger })
       return res.redirect('/' + yindow.name)
     }
 
@@ -76,11 +76,12 @@ module.exports.createServer = function(opts) {
   }
 
   function setPaneFromPut(req, res) {
+    logger.debug('Setting from PUT', res.body)
     try {
       findPane(req).set(req.body)
       res.send(200)
     } catch (e) {
-      res.send(400)
+      res.send(400, e.message)
     }
   }
 
