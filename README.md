@@ -1,6 +1,6 @@
 # Yonder - A remote browser management tool
 
-[![build status](https://secure.travis-ci.org/serby/yonder.png)](http://travis-ci.org/serby/yonder)
+[![build status](https://secure.travis-ci.org/serby/yonder.png)](http://travis-ci.org/serby/yonder) [![Greenkeeper badge](https://badges.greenkeeper.io/serby/yonder.svg)](https://greenkeeper.io/)
 
 ## Installation
 
