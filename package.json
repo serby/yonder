@@ -22,20 +22,20 @@
     "node": ">0.4.0"
   },
   "dependencies": {
-    "express": "~3.4.6",
-    "lodash": "~2.4.0",
-    "socket.io": "~0.9.16",
-    "stylus": "~0.41.0",
-    "jade": "~0.35.0"
+    "express": "~4.17.1",
+    "lodash": "~4.17.11",
+    "socket.io": "~2.2.0",
+    "stylus": "~0.54.5",
+    "jade": "~1.11.0"
   },
   "devDependencies": {
-    "mocha": "1",
-    "should": "2",
-    "jshint": "~2.3.0",
+    "mocha": "^6.1.4",
+    "should": "^13.2.3",
+    "jshint": "~2.10.2",
     "jshint-full-path": "~1.1.0",
-    "istanbul": "~0.1.46",
-    "request": "~2.30.0",
-    "async": "~0.2.9",
-    "logga": "~1.0.0"
+    "istanbul": "~0.4.5",
+    "request": "~2.88.0",
+    "async": "~3.1.0",
+    "logga": "~1.1.0"
   }
 }
